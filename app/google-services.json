@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "992898988086",
+    "firebase_url": "https://slack-bot-b888d.firebaseio.com",
+    "project_id": "slack-bot-b888d",
+    "storage_bucket": "slack-bot-b888d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992898988086:android:01a0f506a36e60fe",
+        "android_client_info": {
+          "package_name": "com.example.conorbyrne.freebee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992898988086-09uhqou8lbjcl79knhfbt9tokon42bs8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.conorbyrne.freebee",
+            "certificate_hash": "1c9b5a163b9aaed29990366f8b7e7eb67b7c614d"
+          }
+        },
+        {
+          "client_id": "992898988086-nir9m4n3csd89bj9ffieds5fpk5hpaas.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnITBU4iY0TaBaCVl53AMddwLo6pm4_tM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992898988086-nir9m4n3csd89bj9ffieds5fpk5hpaas.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
