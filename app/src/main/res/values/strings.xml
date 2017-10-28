@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FreeBee</string>
+    <string name="log_out">Log Out</string>
+    <string name="account_settings">Account Settings</string>
 </resources>

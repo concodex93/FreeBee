@@ -8,110 +8,90 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+import org.w3c.dom.Text;
 
-public class RegisterActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    // This Activity is for users to create new accounts with FreeBee
-
-    // UI vars
-    private TextInputLayout mDisplayName;
-    private TextInputLayout mEmail;
-    private TextInputLayout mPassword;
-    private Button mRegiterBtn;
+    // Firebase Auth
+    private FirebaseAuth mAuth;
 
     // Toolbar
     private Toolbar mToolbar;
 
-    // Firebase vars
-    private FirebaseAuth mAuth;
-
-    //Progress dialog
+    // UI vars
+    private TextInputLayout mEmail;
+    private TextInputLayout mPassword;
+    private Button mLoginBtn;
     private AVLoadingIndicatorView avi;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_login);
 
-        // Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_register);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_login);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Create Account");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Login");
 
-        avi = (AVLoadingIndicatorView) findViewById(R.id.avi_reg);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.login_avi);
 
-        mDisplayName = (TextInputLayout) findViewById(R.id.register_display_name_til);
-        mEmail = (TextInputLayout) findViewById(R.id.register_email_til);
-        mPassword = (TextInputLayout) findViewById(R.id.register_password_til);
-        mRegiterBtn = (Button) findViewById(R.id.register_create_reg_btn);
+        mEmail = (TextInputLayout) findViewById(R.id.login_email_til);
+        mPassword = (TextInputLayout) findViewById(R.id.login_password_til);
 
-        // Pop up hints
-        mDisplayName.setHint("Display Name");
-        mEmail.setHint("Email");
-        mPassword.setHint("Password");
-
-        mRegiterBtn.setOnClickListener(new View.OnClickListener() {
+        mLoginBtn = (Button) findViewById(R.id.login_btn);
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                startAnim();
-                hideKeyboard();
-
-                // Get text from text input fields
-                String displayName = mDisplayName.getEditText().getText().toString();
                 String email = mEmail.getEditText().getText().toString();
                 String password = mPassword.getEditText().getText().toString();
 
-                if (!TextUtils.isEmpty(displayName) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
-                    registerUser(displayName, email, password);
-                }
+                if(!TextUtils.isEmpty(email) || (!TextUtils.isEmpty(password))){
 
+                    startAnim();
+                    hideKeyboard();
+
+                    loginUser(email, password);
+                }
             }
         });
     }
 
-    private void registerUser(String displayName, String email, String password){
+    private void loginUser(String email, String password){
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (task.isSuccessful()) {
-                            // Go to main page if task is successful
-                            Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+
+                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(mainIntent);
                             finish();
                         } else{
-                            Toast.makeText(RegisterActivity.this, "Account Registration Error",
-                                    Toast.LENGTH_SHORT).show();
 
+                            Toast.makeText(LoginActivity.this, "Incorrect email or password",
+                                    Toast.LENGTH_SHORT).show();
                         }
 
                         stopAnim();
+
                     }
                 });
     }

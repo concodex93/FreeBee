@@ -12,24 +12,37 @@ public class StartActivity extends AppCompatActivity {
     // or who do not have an account yet.
 
     // UI vars
-    Button mAccountBtn;
+    private Button mAccountBtn;
+    private Button mLoginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        // Account Button Defn
+        // Account Button def
         mAccountBtn = (Button) findViewById(R.id.start_account_btn);
+        mLoginBtn = (Button) findViewById(R.id.start_login_btn);
+
         mAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Sent user to Register Activity
-                Intent register_intent = new Intent(StartActivity.this, RegisterActivity.class);
-                startActivity(register_intent);
+                // Send user to Register Activity
+                Intent registerIntent = new Intent(StartActivity.this, RegisterActivity.class);
+                startActivity(registerIntent);
+                finish();
             }
         });
 
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Send user to Login Activity
+                Intent loginIntent = new Intent(StartActivity.this, LoginActivity.class);
+                startActivity(loginIntent);
+                finish();
+            }
+        });
 
     }
 }
