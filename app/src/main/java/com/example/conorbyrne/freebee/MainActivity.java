@@ -1,11 +1,14 @@
 package com.example.conorbyrne.freebee;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -14,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
     // This is the main UI page of the App
     private Toolbar mToolbar;
+
+    // Vars for tabs
+    private ViewPager mViewPager;
+    private TabSectionsPagerAdapter mTabSectionsPagerAdapter;
+    private TabLayout mTabLayout;
 
     // Firebase related vars
     private FirebaseAuth mAuth;
@@ -31,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("FreeBee");
+
+        // For tabs
+        mViewPager = (ViewPager) findViewById(R.id.tab_viewpager);
+        mTabSectionsPagerAdapter = new TabSectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mTabSectionsPagerAdapter);
+
+        mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
 
     }
 

@@ -103,6 +103,8 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Go to main page if task is successful
                             Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                            // Clears all previous tasks after registration
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);
                             finish();
                         } else{
