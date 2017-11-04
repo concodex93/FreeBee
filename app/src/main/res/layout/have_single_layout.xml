@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <View
         android:background="#cccccc"
         android:layout_height="5dp"
-        android:layout_width="match_parent"/>
-
+        android:layout_width="match_parent" />
 
     <TextView
-        android:id="@+id/textviewsingle"
+        android:id="@+id/singletexthave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -32,10 +30,10 @@
         android:text="Description"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        android:layout_below="@+id/textviewsingle"
-        android:layout_alignLeft="@+id/textviewsingle"
-        android:layout_alignStart="@+id/textviewsingle"
-        android:layout_marginTop="19dp" />
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/singletexthave"
+        android:layout_alignLeft="@+id/singletexthave"
+        android:layout_alignStart="@+id/singletexthave" />
 
     <TextView
         android:id="@+id/textView6"
@@ -49,5 +47,6 @@
         android:text="Quality"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
+
 
 </RelativeLayout>

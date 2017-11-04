@@ -1,6 +1,5 @@
 package com.example.conorbyrne.freebee;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -37,8 +35,7 @@ public class WantFragment extends Fragment {
 
         mWantList = (RecyclerView) mMainView.findViewById(R.id.want_list);
 
-        mItemDatabase = FirebaseDatabase.getInstance()
-                .getReference();
+        mItemDatabase = FirebaseDatabase.getInstance().getReference();
 
         mWantList.setHasFixedSize(true);
         mWantList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -61,7 +58,6 @@ public class WantFragment extends Fragment {
                 wantViewHolder.setName(item.getName());
             }
         };
-
 
         mWantList.setAdapter(itemFirebaseRecyclerViewAdapter);
     }
