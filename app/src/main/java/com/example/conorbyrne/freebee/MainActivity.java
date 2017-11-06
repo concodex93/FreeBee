@@ -14,6 +14,8 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Firebase related vars
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabaseReference;
 
 
     @Override
@@ -36,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Get signed in user instance
         mAuth = FirebaseAuth.getInstance();
+
+        // Database
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         // Create toolbar
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -54,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.floating_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+                Intent uploadIntent = new Intent(MainActivity.this, UploadActivity.class);
+                startActivity(uploadIntent);
             }
         });
 

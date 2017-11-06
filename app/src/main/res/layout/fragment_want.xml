@@ -10,7 +10,6 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         android:paddingTop="8dp"
-        android:clipToPadding="false"
-        />
+        android:clipToPadding="false" />
 
 </RelativeLayout>
