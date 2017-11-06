@@ -34,9 +34,11 @@ public class UploadActivity extends AppCompatActivity {
         // Firebase Database
         mItemDatabase = FirebaseDatabase.getInstance().getReference().child("Item");
 
+        // UI vars
         mUploadText = (TextInputLayout) findViewById(R.id.upload_til);
         mUploadButton = (Button) findViewById(R.id.upload_btn);
 
+        // Upload item to Firebase DB. Create new item with name using user input
         mUploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
