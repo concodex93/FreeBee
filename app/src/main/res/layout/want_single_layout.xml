@@ -1,31 +1,69 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-<android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardview"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    card_view:cardBackgroundColor="@android:color/white"
-    card_view:cardElevation="2dp"
-    card_view:cardUseCompatPadding="true">
-    
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/textviewsingle"
-        android:text="Item"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/tools">
 
-    </RelativeLayout>
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        card_view:cardBackgroundColor="@android:color/white"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
 
-</android.support.v7.widget.CardView>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textviewsingle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/descsingletv"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/descsingletv"
+                android:text="Name"
+                card_view:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp"
+                card_view:layout_constraintLeft_toRightOf="@+id/my_image_view_single_tv"
+                android:layout_marginLeft="8dp" />
+
+            <TextView
+                android:id="@+id/descsingletv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/textviewsingle"
+                android:text="Description"
+                android:layout_marginTop="8dp"
+                card_view:layout_constraintTop_toBottomOf="@+id/textviewsingle"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
+                card_view:layout_constraintVertical_bias="0.0"
+                card_view:layout_constraintLeft_toRightOf="@+id/my_image_view_single_tv"
+                android:layout_marginLeft="8dp" />
+
+            <ImageView
+                android:id="@+id/my_image_view_single_tv"
+                android:layout_width="122dp"
+                android:layout_height="114dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/textviewsingle"
+                android:layout_toStartOf="@+id/textviewsingle"
+                card_view:srcCompat="@drawable/camera2"
+                android:layout_marginLeft="8dp"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,6 +29,7 @@ public class HaveFragment extends Fragment {
 
     // Firebase
     private DatabaseReference mItemDatabase;
+    private FirebaseUser currentUser;
 
     public HaveFragment() {
         // Required empty public constructor
@@ -40,7 +43,10 @@ public class HaveFragment extends Fragment {
 
         mHaveList = (RecyclerView) mMainView.findViewById(R.id.have_list);
 
-        mItemDatabase = FirebaseDatabase.getInstance().getReference();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = currentUser.getUid();
+
+        mItemDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
 
         mHaveList.setHasFixedSize(true);
         mHaveList.setLayoutManager(new LinearLayoutManager(getContext()));

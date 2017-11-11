@@ -26,10 +26,10 @@
         android:id="@+id/tab_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/appBarLayout">
+        android:layout_below="@+id/appBarLayout"
+        android:layout_alignParentBottom="true">
     </android.support.v4.view.ViewPager>
+
 
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_btn"

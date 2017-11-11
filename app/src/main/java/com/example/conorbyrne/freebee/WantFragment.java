@@ -1,5 +1,6 @@
 package com.example.conorbyrne.freebee;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,8 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,6 +25,7 @@ public class WantFragment extends Fragment {
 
     // Firebase
     private DatabaseReference mItemDatabase;
+    private FirebaseUser currentUser;
 
     public WantFragment() {
         // Required empty public constructor
@@ -35,12 +40,15 @@ public class WantFragment extends Fragment {
 
         mWantList = (RecyclerView) mMainView.findViewById(R.id.want_list);
 
-        mItemDatabase = FirebaseDatabase.getInstance().getReference();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = currentUser.getUid();
+
+        mItemDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
 
         mWantList.setHasFixedSize(true);
         mWantList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Inflate the layout for this fragment
+        // Inflate the cur for this fragment
         return mMainView;
     }
 
@@ -55,7 +63,7 @@ public class WantFragment extends Fragment {
             @Override
             protected void populateViewHolder(WantViewHolder wantViewHolder, Item item, int position) {
 
-                wantViewHolder.setName(item.getName());
+                wantViewHolder.setItemVars(item.getName(), item.getDescription());
             }
         };
 
@@ -74,10 +82,14 @@ public class WantFragment extends Fragment {
             mView = itemView;
         }
 
-        public void setName(String name){
+        public void setItemVars(String name, String desc){
 
             TextView mItemNameView = (TextView) mView.findViewById(R.id.textviewsingle);
+            TextView mItemDescriptionView = (TextView) mView.findViewById(R.id.descsingletv);
+            ImageView mImageView = (ImageView) mView.findViewById(R.id.my_image_view_single_tv);
             mItemNameView.setText(name);
+            mItemDescriptionView.setText(desc);
+
         }
 
 
