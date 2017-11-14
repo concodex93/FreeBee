@@ -1,5 +1,6 @@
 package com.example.conorbyrne.freebee;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,13 +16,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+
+import static java.lang.System.load;
 
 public class WantFragment extends Fragment {
 
     // UI vars
     private RecyclerView mWantList;
     private View mMainView;
-
 
     // Firebase
     private DatabaseReference mItemDatabase;
@@ -37,7 +40,6 @@ public class WantFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         mMainView = inflater.inflate(R.layout.fragment_want, container, false);
-
         mWantList = (RecyclerView) mMainView.findViewById(R.id.want_list);
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -72,7 +74,7 @@ public class WantFragment extends Fragment {
 
 
 
-    public static class WantViewHolder extends RecyclerView.ViewHolder{
+    private static class WantViewHolder extends RecyclerView.ViewHolder{
 
         View mView;
 
@@ -82,13 +84,14 @@ public class WantFragment extends Fragment {
             mView = itemView;
         }
 
-        public void setItemVars(String name, String desc){
+        private void setItemVars(String name, String desc){
 
             TextView mItemNameView = (TextView) mView.findViewById(R.id.textviewsingle);
             TextView mItemDescriptionView = (TextView) mView.findViewById(R.id.descsingletv);
-            ImageView mImageView = (ImageView) mView.findViewById(R.id.my_image_view_single_tv);
             mItemNameView.setText(name);
             mItemDescriptionView.setText(desc);
+
+
 
         }
 
